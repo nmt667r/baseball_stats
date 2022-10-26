@@ -1,2 +1,4 @@
 pom.properties
 .classpath
+/target/.gitignore
+/target/classes/.gitignore
