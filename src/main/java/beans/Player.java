@@ -1,7 +1,7 @@
 package beans;
 
 public class Player {
-	private String id; //ID
+	private int id; //ID
 	private String name; //選手名
 	private Double battingAverage; //打率
 	private int games; //試合数
@@ -28,10 +28,10 @@ public class Player {
 	private Double scoringRangePercentage; //得点圏
 	private int errors; //失策
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
