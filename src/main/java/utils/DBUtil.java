@@ -12,9 +12,9 @@ import exception.SQLRuntimeException;
 public class DBUtil {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost/numata_taiki";
-	private static final String USER = "root";
-	private static final String PASSWORD = "";
+	private static final String URL = "jdbc:mysql://localhost/postgres/baseball_stats";
+	private static final String USER = "postgres";
+	private static final String PASSWORD = "postgres";
 
 	static {
 
