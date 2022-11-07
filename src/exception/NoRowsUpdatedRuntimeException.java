@@ -1,4 +1,4 @@
-package chapter6.exception;
+package exception;
 
 
 public class NoRowsUpdatedRuntimeException extends RuntimeException {

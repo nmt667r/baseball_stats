@@ -1,4 +1,4 @@
-package chapter6.utils;
+package utils;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import chapter6.exception.IORuntimeException;
-import chapter6.exception.SQLRuntimeException;
+import exception.IORuntimeException;
+import exception.SQLRuntimeException;
 
 public class CloseableUtil {
 
