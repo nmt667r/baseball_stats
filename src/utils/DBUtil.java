@@ -11,8 +11,8 @@ import exception.SQLRuntimeException;
  */
 public class DBUtil {
 
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost/postgres/baseball_stats";
+	private static final String DRIVER = "org.postgresql.Driver";
+	private static final String URL = "jdbc:postgresql:://localhost/postgres";
 	private static final String USER = "postgres";
 	private static final String PASSWORD = "postgres";
 
