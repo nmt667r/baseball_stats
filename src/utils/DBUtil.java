@@ -12,7 +12,7 @@ import exception.SQLRuntimeException;
 public class DBUtil {
 
 	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String URL = "jdbc:postgresql://localhost/postgres";
+	private static final String URL = "jdbc:postgresql://localhost/postgres?currentSchema=baseball_stats";
 	private static final String USER = "postgres";
 	private static final String PASSWORD = "postgres";
 

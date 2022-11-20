@@ -15,7 +15,11 @@ public class HomeContoroller {
     public static void main(String[] args) throws IOException {
 //    	getStats(args);
     	List<Player> players = new PlayerService().select();
-    	System.out.println(players);
+
+    	for (Player p: players){
+    		System.out.println(p.getId());
+    		System.out.println(p.getName());
+    	}
     }
 
     public static void getStats(String[] args) throws IOException {
