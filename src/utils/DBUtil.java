@@ -20,7 +20,8 @@ public class DBUtil {
 
 		try {
 			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
