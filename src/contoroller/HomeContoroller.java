@@ -1,5 +1,6 @@
 package contoroller;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -22,17 +23,27 @@ public class HomeContoroller {
     	Elements statsArray = document.getElementsByClass("bb-playerTable__row").select("tr");
    	
     	//プレイヤー配列を用意
-    	//List<Player> players = new ArrayList<Player>();
+    	List<Player> players = new ArrayList<Player>();
     	
     	//スクレイピングデータをループして出力
     	for (int i = 1; i < statsArray.size(); i++) {
+    		Player player = new Player();
     		if(i != statsArray.size()-1) {
     			String[] data = statsArray.get(i).text().split(" ");
-        		for (int y = 0; y < data.length; y++) {
-        			System.out.println(data[y]);
-        		}	
+
+    			player.setId(i);
+        		player.setName(data[1]);
+        		player.setBattingAverage(Double.parseDouble(data[3]));
+        		players.add(player);
+        		
     		}
+    		
+    		System.out.println(player.getId());
+    		System.out.println(player.getName());
+    		System.out.println(player.getBattingAverage());
     	}
+        
+
     }
     
 	public static void getStatsAll(String[] args) throws IOException {
