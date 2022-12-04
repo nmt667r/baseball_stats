@@ -15,7 +15,8 @@ public class HomeContoroller {
     public static void main(String[] args) throws IOException {
 //    	getStatsAll(args);
     	List<Player> players = GetPlayerStatsWebAPI.getStats(args);
-    	GetPlayerStatsWebAPI.printStats(players);
+//    	GetPlayerStatsWebAPI.printStats(players);
+    	new PlayerService().insert(players);
     }
 
 
