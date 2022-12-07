@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="baseball_stats_servlet">
+    <wb-module deploy-name="baseball_stats">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="baseball_stats_servlet"/>
-        <property name="java-output-path" value="/baseball_stats_servlet/build/classes"/>
+        <property name="java-output-path" value="/baseball_stats/build/classes"/>
+        <property name="context-root" value="baseball_stats"/>
     </wb-module>
 </project-modules>
