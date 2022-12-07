@@ -13,15 +13,12 @@ import beans.Result;
 import exception.SQLRuntimeException;
 
 public class PlayerResultDao {
-	public List<Result> select(Connection connection,int LIMIT_NUM) {
+	public List<Result> select(Connection connection, int LIMIT_NUM) {
 		PreparedStatement ps = null;
 		try {
 			String sql = "SELECT * FROM results";
-
 			ps = connection.prepareStatement(sql);
-
 			ResultSet rs = ps.executeQuery();
-
 			List<Result> results = toPlayers(rs);
 			return results;
 		} catch (SQLException e) {
@@ -30,7 +27,7 @@ public class PlayerResultDao {
 			close(ps);
 		}
 	}
-	
+
 	private List<Result> toPlayers(ResultSet rs) throws SQLException {
 
 		List<Result> results = new ArrayList<Result>();
@@ -41,7 +38,6 @@ public class PlayerResultDao {
 				result.setName(rs.getString("name"));
 				//result.setCreatedDate(rs.getTimestamp("created_date"));
 				//result.setUpdatedDate(rs.getTimestamp("updated_date"));
-
 				results.add(result);
 			}
 			return results;
@@ -49,73 +45,72 @@ public class PlayerResultDao {
 			close(rs);
 		}
 	}
-	
+
 	public void insert(Connection connection, List<Result> results) {
 
 		PreparedStatement ps = null;
 		try {
-			for (Result result: results){
-			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO results ( ");
-			sql.append("    name, ");
-			sql.append("    battingAverage, ");
-			sql.append("    games, ");
-			sql.append("    atBats, ");
-			sql.append("    plateAppearance, ");
-			sql.append("    hits, ");
-			sql.append("    doubles, ");
-			sql.append("    triples, ");
-			sql.append("    homeruns, ");
-			sql.append("    totalBases, ");
-			sql.append("    rbi, ");
-			sql.append("    runs, ");
-			sql.append("    strikeOuts, ");
-			sql.append("    baseOnBalls, ");
-			sql.append("    hitByPitches, ");
-			sql.append("    sacrificeBunts, ");
-			sql.append("    sacrificeFlies, ");
-			sql.append("    stolenBases, ");
-			sql.append("    stolenBaseDeath, ");
-			sql.append("    doublePlay, ");
-			sql.append("    onBasePercentage, ");
-			sql.append("    sluggingPercentage, ");
-			sql.append("    ops, ");
-			sql.append("    scoringRangePercentage, ");
-			sql.append("    errors, ");
-			sql.append("    createddate, ");
-			sql.append("    updateddate ");
+			for (Result result : results) {
+				StringBuilder sql = new StringBuilder();
+				sql.append("INSERT INTO results ( ");
+				sql.append("    name, ");
+				sql.append("    battingAverage, ");
+				sql.append("    games, ");
+				sql.append("    atBats, ");
+				sql.append("    plateAppearance, ");
+				sql.append("    hits, ");
+				sql.append("    doubles, ");
+				sql.append("    triples, ");
+				sql.append("    homeruns, ");
+				sql.append("    totalBases, ");
+				sql.append("    rbi, ");
+				sql.append("    runs, ");
+				sql.append("    strikeOuts, ");
+				sql.append("    baseOnBalls, ");
+				sql.append("    hitByPitches, ");
+				sql.append("    sacrificeBunts, ");
+				sql.append("    sacrificeFlies, ");
+				sql.append("    stolenBases, ");
+				sql.append("    stolenBaseDeath, ");
+				sql.append("    doublePlay, ");
+				sql.append("    onBasePercentage, ");
+				sql.append("    sluggingPercentage, ");
+				sql.append("    ops, ");
+				sql.append("    scoringRangePercentage, ");
+				sql.append("    errors, ");
+				sql.append("    createddate, ");
+				sql.append("    updateddate ");
+				sql.append(") VALUES ( ");
+				sql.append("    ?, "); // name
+				sql.append("    ?, "); // battingAverage
+				sql.append("    ?, "); // games
+				sql.append("    ?, "); // atBats
+				sql.append("    ?, "); // plateAppearance
+				sql.append("    ?, "); // hits
+				sql.append("    ?, "); // doubles
+				sql.append("    ?, "); // triples
+				sql.append("    ?, "); // homeruns
+				sql.append("    ?, "); // totalBases
+				sql.append("    ?, "); // rbi
+				sql.append("    ?, "); // runs
+				sql.append("    ?, "); // strikeOuts
+				sql.append("    ?, "); // baseOnBalls
+				sql.append("    ?, "); // hitByPitches
+				sql.append("    ?, "); // sacrificeBunts
+				sql.append("    ?, "); // sacrificeFlies
+				sql.append("    ?, "); // stolenBases
+				sql.append("    ?, "); // stolenBaseDeath
+				sql.append("    ?, "); // doublePlay
+				sql.append("    ?, "); // onBasePercentage
+				sql.append("    ?, "); // sluggingPercentage
+				sql.append("    ?, "); // ops
+				sql.append("    ?, "); // scoringRangePercentage
+				sql.append("    ?, "); // errors
+				sql.append("    CURRENT_TIMESTAMP, "); // created_date
+				sql.append("    CURRENT_TIMESTAMP "); // updated_date
+				sql.append(")");
 
-			sql.append(") VALUES ( ");
-			sql.append("    ?, "); // name
-			sql.append("    ?, "); // battingAverage
-			sql.append("    ?, "); // games
-			sql.append("    ?, "); // atBats
-			sql.append("    ?, "); // plateAppearance
-			sql.append("    ?, "); // hits
-			sql.append("    ?, "); // doubles
-			sql.append("    ?, "); // triples
-			sql.append("    ?, "); // homeruns
-			sql.append("    ?, "); // totalBases
-			sql.append("    ?, "); // rbi
-			sql.append("    ?, "); // runs
-			sql.append("    ?, "); // strikeOuts
-			sql.append("    ?, "); // baseOnBalls
-			sql.append("    ?, "); // hitByPitches
-			sql.append("    ?, "); // sacrificeBunts
-			sql.append("    ?, "); // sacrificeFlies
-			sql.append("    ?, "); // stolenBases
-			sql.append("    ?, "); // stolenBaseDeath
-			sql.append("    ?, "); // doublePlay
-			sql.append("    ?, "); // onBasePercentage
-			sql.append("    ?, "); // sluggingPercentage
-			sql.append("    ?, "); // ops
-			sql.append("    ?, "); // scoringRangePercentage
-			sql.append("    ?, "); // errors
-			sql.append("    CURRENT_TIMESTAMP, "); // created_date
-			sql.append("    CURRENT_TIMESTAMP "); // updated_date
-			sql.append(")");
-
-			ps = connection.prepareStatement(sql.toString());
+				ps = connection.prepareStatement(sql.toString());
 
 				ps.setString(1, result.getName());
 				ps.setDouble(2, result.getBattingAverage());
@@ -142,12 +137,8 @@ public class PlayerResultDao {
 				ps.setDouble(23, result.getOps());
 				ps.setDouble(24, result.getScoringRangePercentage());
 				ps.setInt(25, result.getErrors());
-
 				ps.executeUpdate();
 			}
-
-
-			
 		} catch (SQLException e) {
 			System.out.println(e);
 			throw new SQLRuntimeException(e);

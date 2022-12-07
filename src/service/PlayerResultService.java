@@ -10,15 +10,13 @@ import beans.Result;
 import dao.PlayerResultDao;
 
 public class PlayerResultService {
-	public List<Result> select(){
+	public List<Result> select() {
 		final int LIMIT_NUM = 10;
 		Connection connection = null;
 		try {
 			connection = getConnection();
-
 			List<Result> players = new PlayerResultDao().select(connection, LIMIT_NUM);
 			commit(connection);
-
 			return players;
 		} catch (RuntimeException e) {
 			rollback(connection);
@@ -30,8 +28,8 @@ public class PlayerResultService {
 			close(connection);
 		}
 	}
-	
-	public List<Result> insert(List<Result> players){
+
+	public List<Result> insert(List<Result> players) {
 		Connection connection = null;
 		try {
 			connection = getConnection();
