@@ -2,15 +2,15 @@ package contoroller;
 import java.io.IOException;
 import java.util.List;
 
-import beans.Player;
-import service.PlayerService;
+import beans.Result;
+import service.PlayerResultService;
 public class HomeContoroller {
 
 
     public static void main(String[] args) throws IOException {
 //    	test.getStatsAll(args);
-    	List<Player> players = GetPlayerStatsWebAPI.getStats(args);
-//    	GetPlayerStatsWebAPI.printStats(players);
-    	new PlayerService().insert(players);
+    	List<Result> results = GetPlayerResultWebAPI.getStats(args);
+    	GetPlayerResultWebAPI.printStats(results);
+    	new PlayerResultService().insert(results);
     }
 }

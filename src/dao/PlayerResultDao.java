@@ -9,21 +9,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Player;
+import beans.Result;
 import exception.SQLRuntimeException;
 
-public class PlayerDao {
-	public List<Player> select(Connection connection,int LIMIT_NUM) {
+public class PlayerResultDao {
+	public List<Result> select(Connection connection,int LIMIT_NUM) {
 		PreparedStatement ps = null;
 		try {
-			String sql = "SELECT * FROM players";
+			String sql = "SELECT * FROM results";
 
 			ps = connection.prepareStatement(sql);
 
 			ResultSet rs = ps.executeQuery();
 
-			List<Player> players = toPlayers(rs);
-			return players;
+			List<Result> results = toPlayers(rs);
+			return results;
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {
@@ -31,32 +31,32 @@ public class PlayerDao {
 		}
 	}
 	
-	private List<Player> toPlayers(ResultSet rs) throws SQLException {
+	private List<Result> toPlayers(ResultSet rs) throws SQLException {
 
-		List<Player> players = new ArrayList<Player>();
+		List<Result> results = new ArrayList<Result>();
 		try {
 			while (rs.next()) {
-				Player player = new Player();
-				player.setId(rs.getInt("id"));
-				player.setName(rs.getString("name"));
-				//player.setCreatedDate(rs.getTimestamp("created_date"));
-				//player.setUpdatedDate(rs.getTimestamp("updated_date"));
+				Result result = new Result();
+				result.setId(rs.getInt("id"));
+				result.setName(rs.getString("name"));
+				//result.setCreatedDate(rs.getTimestamp("created_date"));
+				//result.setUpdatedDate(rs.getTimestamp("updated_date"));
 
-				players.add(player);
+				results.add(result);
 			}
-			return players;
+			return results;
 		} finally {
 			close(rs);
 		}
 	}
 	
-	public void insert(Connection connection, List<Player> players) {
+	public void insert(Connection connection, List<Result> results) {
 
 		PreparedStatement ps = null;
 		try {
-			for (Player player: players){
+			for (Result result: results){
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO players ( ");
+			sql.append("INSERT INTO results ( ");
 			sql.append("    name, ");
 			sql.append("    battingAverage, ");
 			sql.append("    games, ");
@@ -117,31 +117,31 @@ public class PlayerDao {
 
 			ps = connection.prepareStatement(sql.toString());
 
-				ps.setString(1, player.getName());
-				ps.setDouble(2, player.getBattingAverage());
-				ps.setInt(3, player.getGames());
-				ps.setInt(4, player.getAtBats());
-				ps.setInt(5, player.getPlateAppearance());
-				ps.setInt(6, player.getHits());
-				ps.setInt(7, player.getDoubles());
-				ps.setInt(8, player.getTriples());
-				ps.setInt(9, player.getHomeruns());
-				ps.setInt(10, player.getTotalBases());
-				ps.setInt(11, player.getRbi());
-				ps.setInt(12, player.getRuns());
-				ps.setInt(13, player.getStrikeOuts());
-				ps.setInt(14, player.getBaseOnBalls());
-				ps.setInt(15, player.getHitByPitches());
-				ps.setInt(16, player.getSacrificeBunts());
-				ps.setInt(17, player.getSacrificeFlies());
-				ps.setInt(18, player.getStolenBases());
-				ps.setInt(19, player.getStolenBaseDeath());
-				ps.setInt(20, player.getDoublePlay());
-				ps.setDouble(21, player.getOnBasePercentage());
-				ps.setDouble(22, player.getSluggingPercentage());
-				ps.setDouble(23, player.getOps());
-				ps.setDouble(24, player.getScoringRangePercentage());
-				ps.setInt(25, player.getErrors());
+				ps.setString(1, result.getName());
+				ps.setDouble(2, result.getBattingAverage());
+				ps.setInt(3, result.getGames());
+				ps.setInt(4, result.getAtBats());
+				ps.setInt(5, result.getPlateAppearance());
+				ps.setInt(6, result.getHits());
+				ps.setInt(7, result.getDoubles());
+				ps.setInt(8, result.getTriples());
+				ps.setInt(9, result.getHomeruns());
+				ps.setInt(10, result.getTotalBases());
+				ps.setInt(11, result.getRbi());
+				ps.setInt(12, result.getRuns());
+				ps.setInt(13, result.getStrikeOuts());
+				ps.setInt(14, result.getBaseOnBalls());
+				ps.setInt(15, result.getHitByPitches());
+				ps.setInt(16, result.getSacrificeBunts());
+				ps.setInt(17, result.getSacrificeFlies());
+				ps.setInt(18, result.getStolenBases());
+				ps.setInt(19, result.getStolenBaseDeath());
+				ps.setInt(20, result.getDoublePlay());
+				ps.setDouble(21, result.getOnBasePercentage());
+				ps.setDouble(22, result.getSluggingPercentage());
+				ps.setDouble(23, result.getOps());
+				ps.setDouble(24, result.getScoringRangePercentage());
+				ps.setInt(25, result.getErrors());
 
 				ps.executeUpdate();
 			}

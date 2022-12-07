@@ -6,17 +6,17 @@ import static utils.DBUtil.*;
 import java.sql.Connection;
 import java.util.List;
 
-import beans.Player;
-import dao.PlayerDao;
+import beans.Result;
+import dao.PlayerResultDao;
 
-public class PlayerService {
-	public List<Player> select(){
+public class PlayerResultService {
+	public List<Result> select(){
 		final int LIMIT_NUM = 10;
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
-			List<Player> players = new PlayerDao().select(connection, LIMIT_NUM);
+			List<Result> players = new PlayerResultDao().select(connection, LIMIT_NUM);
 			commit(connection);
 
 			return players;
@@ -31,12 +31,12 @@ public class PlayerService {
 		}
 	}
 	
-	public List<Player> insert(List<Player> players){
+	public List<Result> insert(List<Result> players){
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
-			new PlayerDao().insert(connection, players);
+			new PlayerResultDao().insert(connection, players);
 			commit(connection);
 
 			return players;
