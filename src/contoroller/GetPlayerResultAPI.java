@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 import beans.Result;
 
-public class GetPlayerResultWebAPI {
+public class GetPlayerResultAPI {
 	public static List<Result> getStats(String[] args) throws IOException {
 		//全htmlデータ取得
 		Document document = Jsoup.connect("https://baseball.yahoo.co.jp/npb/stats/batter?gameKindId=2").get();
