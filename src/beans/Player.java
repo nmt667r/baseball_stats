@@ -3,8 +3,8 @@ package beans;
 public class Player {
 	private int id; //ID
 	private String name; //選手名
-	private String league; //選手名
-	private String team; //選手名
+	private String league; //リーグ
+	private String team; //チーム名
 	public int getId() {
 		return id;
 	}
