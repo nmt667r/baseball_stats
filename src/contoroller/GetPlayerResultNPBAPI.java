@@ -28,6 +28,8 @@ public class GetPlayerResultNPBAPI {
 			ResultBeans result = new ResultBeans();
 			if (i != statsArray.size()) {
 				String[] data = statsArray.get(i).text().split(" ");
+				Double SluggingPercentage = Double.parseDouble(data[23]);
+				Double OnBasePercentage = Double.parseDouble(data[24]);
 				//result.setId(i);
 				result.setName(data[1]);
 				result.setBattingAverage(Double.parseDouble(data[3]));
@@ -49,8 +51,9 @@ public class GetPlayerResultNPBAPI {
 				result.setHitByPitches(Integer.parseInt(data[20]));
 				result.setStrikeOuts(Integer.parseInt(data[21]));
 				result.setDoublePlay(Integer.parseInt(data[22]));
-				result.setSluggingPercentage(Double.parseDouble(data[23]));
-				result.setOnBasePercentage(Double.parseDouble(data[24]));
+				result.setSluggingPercentage(SluggingPercentage);
+				result.setOnBasePercentage(OnBasePercentage);
+				result.setOps(SluggingPercentage + OnBasePercentage);
 				results.add(result);
 			}
 		}

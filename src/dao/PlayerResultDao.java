@@ -75,7 +75,7 @@ public class PlayerResultDao {
 				sql.append("    doublePlay, ");
 				sql.append("    onBasePercentage, ");
 				sql.append("    sluggingPercentage, ");
-//				sql.append("    ops, ");
+				sql.append("    ops, ");
 //				sql.append("    scoringRangePercentage, ");
 //				sql.append("    errors, ");
 				sql.append("    createddate, ");
@@ -103,7 +103,7 @@ public class PlayerResultDao {
 				sql.append("    ?, "); // doublePlay
 				sql.append("    ?, "); // onBasePercentage
 				sql.append("    ?, "); // sluggingPercentage
-//				sql.append("    ?, "); // ops
+				sql.append("    ?, "); // ops
 //				sql.append("    ?, "); // scoringRangePercentage
 //				sql.append("    ?, "); // errors
 				sql.append("    CURRENT_TIMESTAMP, "); // created_date
@@ -134,7 +134,7 @@ public class PlayerResultDao {
 				ps.setInt(20, result.getDoublePlay());
 				ps.setDouble(21, result.getOnBasePercentage());
 				ps.setDouble(22, result.getSluggingPercentage());
-//				ps.setDouble(23, result.getOps());
+				ps.setDouble(23, result.getOps());
 //				ps.setDouble(24, result.getScoringRangePercentage());
 //				ps.setInt(25, result.getErrors());
 				ps.executeUpdate();
