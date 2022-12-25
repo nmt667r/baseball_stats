@@ -6,11 +6,11 @@ import static utils.DBUtil.*;
 import java.sql.Connection;
 import java.util.List;
 
-import beans.Player;
+import beans.PlayerBeans;
 import dao.PlayerInfoDao;
 
 public class PlayerInfoService {
-	public List<Player> insert(List<Player> players) {
+	public List<PlayerBeans> insert(List<PlayerBeans> players) {
 		Connection connection = null;
 		try {
 			connection = getConnection();

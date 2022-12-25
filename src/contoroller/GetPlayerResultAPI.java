@@ -8,24 +8,24 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import beans.Result;
+import beans.ResultBeans;
 
 public class GetPlayerResultAPI {
-	public static List<Result> getStats(String[] args) throws IOException {
+	public static List<ResultBeans> getStats(String[] args) throws IOException {
 		//全htmlデータ取得
 		Document document = Jsoup.connect("https://baseball.yahoo.co.jp/npb/stats/batter?gameKindId=2").get();
 		//クラス・タグで絞って配列化
 		Elements statsArray = document.getElementsByClass("bb-playerTable__row").select("tr");
-		List<Result> results = setStats(statsArray);
+		List<ResultBeans> results = setStats(statsArray);
 		//スクレイピングデータをループして出力
 		return results;
 	}
 
-	public final static List<Result> setStats(Elements statsArray) throws IOException {
+	public final static List<ResultBeans> setStats(Elements statsArray) throws IOException {
 		//プレイヤー配列を用意
-		List<Result> results = new ArrayList<Result>();
+		List<ResultBeans> results = new ArrayList<ResultBeans>();
 		for (int i = 1; i < statsArray.size(); i++) {
-			Result result = new Result();
+			ResultBeans result = new ResultBeans();
 			if (i != statsArray.size() - 1) {
 				String[] data = statsArray.get(i).text().split(" ");
 				result.setId(i);
@@ -60,8 +60,8 @@ public class GetPlayerResultAPI {
 		return results;
 	}
 
-	public final static void printStats(List<Result> results) throws IOException {
-		for (Result p : results) {
+	public final static void printStats(List<ResultBeans> results) throws IOException {
+		for (ResultBeans p : results) {
 			System.out.println(p.getId());
 			System.out.println(p.getName());
 			System.out.println(p.getBattingAverage());

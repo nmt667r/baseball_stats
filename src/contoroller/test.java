@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import beans.Result;
+import beans.ResultBeans;
 import service.PlayerResultService;
 
 public class test {
@@ -27,8 +27,8 @@ public class test {
 	
 	//DB接続用メソッド
 	public static void getDBstats(String[] args) throws IOException {
-		List<Result> results = new PlayerResultService().select();
-    	for (Result p: results){
+		List<ResultBeans> results = new PlayerResultService().select();
+    	for (ResultBeans p: results){
     		System.out.println(p.getId());
     		System.out.println(p.getName());
     	}

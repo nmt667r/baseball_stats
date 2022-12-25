@@ -1,6 +1,6 @@
 package beans;
 
-public class Result {
+public class ResultBeans {
 	private int id; //ID
 	private String name; //選手名
 	private Double battingAverage; //打率

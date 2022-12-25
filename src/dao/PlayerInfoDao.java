@@ -7,15 +7,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import beans.Player;
+import beans.PlayerBeans;
 import exception.SQLRuntimeException;
 
 public class PlayerInfoDao {
-	public void insert(Connection connection, List<Player> players) {
+	public void insert(Connection connection, List<PlayerBeans> players) {
 
 		PreparedStatement ps = null;
 		try {
-			for (Player player : players) {
+			for (PlayerBeans player : players) {
 				StringBuilder sql = new StringBuilder();
 				sql.append("INSERT INTO players ( ");
 				sql.append("    name, ");

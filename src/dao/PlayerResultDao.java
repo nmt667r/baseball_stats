@@ -9,17 +9,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Result;
+import beans.ResultBeans;
 import exception.SQLRuntimeException;
 
 public class PlayerResultDao {
-	public List<Result> select(Connection connection, int LIMIT_NUM) {
+	public List<ResultBeans> select(Connection connection, int LIMIT_NUM) {
 		PreparedStatement ps = null;
 		try {
 			String sql = "SELECT * FROM results";
 			ps = connection.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			List<Result> results = toPlayers(rs);
+			List<ResultBeans> results = toPlayers(rs);
 			return results;
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
@@ -28,12 +28,12 @@ public class PlayerResultDao {
 		}
 	}
 
-	private List<Result> toPlayers(ResultSet rs) throws SQLException {
+	private List<ResultBeans> toPlayers(ResultSet rs) throws SQLException {
 
-		List<Result> results = new ArrayList<Result>();
+		List<ResultBeans> results = new ArrayList<ResultBeans>();
 		try {
 			while (rs.next()) {
-				Result result = new Result();
+				ResultBeans result = new ResultBeans();
 				result.setId(rs.getInt("id"));
 				result.setName(rs.getString("name"));
 				//result.setCreatedDate(rs.getTimestamp("created_date"));
@@ -46,11 +46,11 @@ public class PlayerResultDao {
 		}
 	}
 
-	public void insert(Connection connection, List<Result> results) {
+	public void insert(Connection connection, List<ResultBeans> results) {
 
 		PreparedStatement ps = null;
 		try {
-			for (Result result : results) {
+			for (ResultBeans result : results) {
 				StringBuilder sql = new StringBuilder();
 				sql.append("INSERT INTO results ( ");
 				sql.append("    name, ");
