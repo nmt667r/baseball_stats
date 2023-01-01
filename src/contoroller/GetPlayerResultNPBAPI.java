@@ -11,17 +11,17 @@ import org.jsoup.select.Elements;
 import beans.ResultBeans;
 
 public class GetPlayerResultNPBAPI {
-	public static List<ResultBeans> getStats(String[] args) throws IOException {
+	public static List<ResultBeans> getStats(int year,String league) throws IOException {
 		//全htmlデータ取得
-		Document document = Jsoup.connect("https://npb.jp/bis/2021/stats/bat_c.html").get();
+		Document document = Jsoup.connect("https://npb.jp/bis/"+year+"/stats/bat_"+league+".html").get();
 		Elements statsArray = document.select("tr");
-		List<ResultBeans> results = setStats(statsArray);
+		List<ResultBeans> results = setStats(statsArray, league);
 		//スクレイピングデータをループして出力
 		return results;
 	}
 	
 		
-	public final static List<ResultBeans> setStats(Elements statsArray) throws IOException {
+	public final static List<ResultBeans> setStats(Elements statsArray, String league) throws IOException {
 		//プレイヤー配列を用意
 		List<ResultBeans> results = new ArrayList<ResultBeans>();
 		for (int i = 2; i < statsArray.size()-1; i++) {
@@ -32,6 +32,7 @@ public class GetPlayerResultNPBAPI {
 				Double OnBasePercentage = Double.parseDouble(data[24]);
 				//result.setId(i);
 				result.setName(data[1]);
+				result.setLeague(getLeagueString(league));
 				result.setBattingAverage(Double.parseDouble(data[3]));
 				result.setGames(Integer.parseInt(data[4]));
 				result.setAtBats(Integer.parseInt(data[5]));
@@ -58,5 +59,14 @@ public class GetPlayerResultNPBAPI {
 			}
 		}
 		return results;
+	}
+	
+	public final static String getLeagueString(String league) throws IOException {
+		if(league.equals("c")) {
+			league = "セ";
+		} else {
+			league = "パ";
+		}
+		return league;
 	}
 }

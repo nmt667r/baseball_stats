@@ -54,6 +54,7 @@ public class PlayerResultDao {
 				StringBuilder sql = new StringBuilder();
 				sql.append("INSERT INTO results ( ");
 				sql.append("    name, ");
+				sql.append("    league, ");
 				sql.append("    battingAverage, ");
 				sql.append("    games, ");
 				sql.append("    atBats, ");
@@ -82,6 +83,7 @@ public class PlayerResultDao {
 				sql.append("    updateddate ");
 				sql.append(") VALUES ( ");
 				sql.append("    ?, "); // name
+				sql.append("    ?, "); // league
 				sql.append("    ?, "); // battingAverage
 				sql.append("    ?, "); // games
 				sql.append("    ?, "); // atBats
@@ -113,28 +115,29 @@ public class PlayerResultDao {
 				ps = connection.prepareStatement(sql.toString());
 
 				ps.setString(1, result.getName());
-				ps.setDouble(2, result.getBattingAverage());
-				ps.setInt(3, result.getGames());
-				ps.setInt(4, result.getAtBats());
-				ps.setInt(5, result.getPlateAppearance());
-				ps.setInt(6, result.getHits());
-				ps.setInt(7, result.getDoubles());
-				ps.setInt(8, result.getTriples());
-				ps.setInt(9, result.getHomeruns());
-				ps.setInt(10, result.getTotalBases());
-				ps.setInt(11, result.getRbi());
-				ps.setInt(12, result.getRuns());
-				ps.setInt(13, result.getStrikeOuts());
-				ps.setInt(14, result.getBaseOnBalls());
-				ps.setInt(15, result.getHitByPitches());
-				ps.setInt(16, result.getSacrificeBunts());
-				ps.setInt(17, result.getSacrificeFlies());
-				ps.setInt(18, result.getStolenBases());
-				ps.setInt(19, result.getStolenBaseDeath());
-				ps.setInt(20, result.getDoublePlay());
-				ps.setDouble(21, result.getOnBasePercentage());
-				ps.setDouble(22, result.getSluggingPercentage());
-				ps.setDouble(23, result.getOps());
+				ps.setString(2, result.getLeague());
+				ps.setDouble(3, result.getBattingAverage());
+				ps.setInt(4, result.getGames());
+				ps.setInt(5, result.getAtBats());
+				ps.setInt(6, result.getPlateAppearance());
+				ps.setInt(7, result.getHits());
+				ps.setInt(8, result.getDoubles());
+				ps.setInt(9, result.getTriples());
+				ps.setInt(10, result.getHomeruns());
+				ps.setInt(11, result.getTotalBases());
+				ps.setInt(12, result.getRbi());
+				ps.setInt(13, result.getRuns());
+				ps.setInt(14, result.getStrikeOuts());
+				ps.setInt(15, result.getBaseOnBalls());
+				ps.setInt(16, result.getHitByPitches());
+				ps.setInt(17, result.getSacrificeBunts());
+				ps.setInt(18, result.getSacrificeFlies());
+				ps.setInt(19, result.getStolenBases());
+				ps.setInt(20, result.getStolenBaseDeath());
+				ps.setInt(21, result.getDoublePlay());
+				ps.setDouble(22, result.getOnBasePercentage());
+				ps.setDouble(23, result.getSluggingPercentage());
+				ps.setDouble(24, result.getOps());
 //				ps.setDouble(24, result.getScoringRangePercentage());
 //				ps.setInt(25, result.getErrors());
 				ps.executeUpdate();
