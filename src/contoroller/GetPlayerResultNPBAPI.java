@@ -15,13 +15,13 @@ public class GetPlayerResultNPBAPI {
 		//全htmlデータ取得
 		Document document = Jsoup.connect("https://npb.jp/bis/"+year+"/stats/bat_"+league+".html").get();
 		Elements statsArray = document.select("tr");
-		List<ResultBeans> results = setStats(statsArray, league);
+		List<ResultBeans> results = setStats(statsArray, year, league);
 		//スクレイピングデータをループして出力
 		return results;
 	}
 	
 		
-	public final static List<ResultBeans> setStats(Elements statsArray, String league) throws IOException {
+	public final static List<ResultBeans> setStats(Elements statsArray, int year, String league) throws IOException {
 		//プレイヤー配列を用意
 		List<ResultBeans> results = new ArrayList<ResultBeans>();
 		for (int i = 2; i < statsArray.size()-1; i++) {
@@ -33,6 +33,7 @@ public class GetPlayerResultNPBAPI {
 				//result.setId(i);
 				result.setName(data[1]);
 				result.setLeague(getLeagueString(league));
+				result.setYear(year);
 				result.setBattingAverage(Double.parseDouble(data[3]));
 				result.setGames(Integer.parseInt(data[4]));
 				result.setAtBats(Integer.parseInt(data[5]));

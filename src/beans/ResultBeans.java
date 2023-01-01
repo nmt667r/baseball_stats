@@ -3,7 +3,8 @@ package beans;
 public class ResultBeans {
 	private int id; //ID
 	private String name; //選手名
-	private String league;
+	private String league; //リーグ名
+	private int year; //記録年
 	private Double battingAverage; //打率
 	private int games; //試合数
 	private int atBats; //打席
@@ -45,6 +46,12 @@ public class ResultBeans {
 	}
 	public void setLeague(String league) {
 		this.league = league;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
 	}
 	public Double getBattingAverage() {
 		return battingAverage;
