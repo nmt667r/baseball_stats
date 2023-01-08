@@ -2,8 +2,7 @@ package beans;
 
 public class ResultBeans {
 	private int id; //ID
-	private String name; //選手名
-	private String league; //リーグ名
+	private int playerId; //ID
 	private int year; //記録年
 	private Double battingAverage; //打率
 	private int games; //試合数
@@ -35,17 +34,11 @@ public class ResultBeans {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public int getPlayerId() {
+		return playerId;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getLeague() {
-		return league;
-	}
-	public void setLeague(String league) {
-		this.league = league;
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
 	}
 	public int getYear() {
 		return year;

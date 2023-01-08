@@ -8,7 +8,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import beans.PlayerBeans;
 import beans.ResultBeans;
+import service.PlayerInfoService;
 
 public class GetPlayerResultForNPB {
 	public static List<ResultBeans> getStats(int year,String league) throws IOException {
@@ -30,9 +32,9 @@ public class GetPlayerResultForNPB {
 				String[] data = statsArray.get(i).text().split(" ");
 				Double SluggingPercentage = Double.parseDouble(data[23]);
 				Double OnBasePercentage = Double.parseDouble(data[24]);
-				//result.setId(i);
-				result.setName(data[1]);
-				result.setLeague(getLeagueString(league));
+				result.setPlayerId(new PlayerInfoService().select(data[1]).get(0).getId());
+				//result.setName(data[1]);
+				//result.setLeague(StatsCalculation.getLeagueString(league));
 				result.setYear(year);
 				result.setBattingAverage(Double.parseDouble(data[3]));
 				result.setGames(Integer.parseInt(data[4]));
@@ -62,12 +64,5 @@ public class GetPlayerResultForNPB {
 		return results;
 	}
 	
-	public final static String getLeagueString(String league) throws IOException {
-		if(league.equals("c")) {
-			league = "セ";
-		} else {
-			league = "パ";
-		}
-		return league;
-	}
+
 }

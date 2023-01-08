@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import beans.ResultBeans;
+import service.PlayerInfoService;
 
 public class GetPlayerResultForSportsnavi {
 	public static List<ResultBeans> getStats(String[] args) throws IOException {
@@ -28,8 +29,7 @@ public class GetPlayerResultForSportsnavi {
 			ResultBeans result = new ResultBeans();
 			if (i != statsArray.size() - 1) {
 				String[] data = statsArray.get(i).text().split(" ");
-				result.setId(i);
-				result.setName(data[1]);
+				result.setPlayerId(new PlayerInfoService().select(data[1]).get(0).getId());
 				result.setBattingAverage(Double.parseDouble(data[3]));
 				result.setGames(Integer.parseInt(data[4]));
 				result.setAtBats(Integer.parseInt(data[5]));
@@ -63,7 +63,7 @@ public class GetPlayerResultForSportsnavi {
 	public final static void printStats(List<ResultBeans> results) throws IOException {
 		for (ResultBeans p : results) {
 			System.out.println(p.getId());
-			System.out.println(p.getName());
+			System.out.println(p.getPlayerId());
 			System.out.println(p.getBattingAverage());
 			System.out.println(p.getGames());
 			System.out.println(p.getAtBats());
