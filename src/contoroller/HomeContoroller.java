@@ -12,10 +12,10 @@ public class HomeContoroller {
 		//		test.getStatsAll(args);
 		for (int year = 2005; year < 2023; year++) {
 			String league = "c"; //central league
-			List<ResultBeans> results = GetPlayerResultNPBAPI.getStats(year, league);
+			List<ResultBeans> results = GetPlayerResultForNPB.getStats(year, league);
 			new PlayerResultService().insert(results);
 			league = "p"; //central league
-			results = GetPlayerResultNPBAPI.getStats(year, league);
+			results = GetPlayerResultForNPB.getStats(year, league);
 			new PlayerResultService().insert(results);
         }
 		//List<PlayerBeans> players = GetPlayerInfoAPI.getPlayers(args);
