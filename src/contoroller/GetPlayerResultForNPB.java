@@ -3,22 +3,14 @@ package contoroller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
-import beans.PlayerBeans;
 import beans.ResultBeans;
 import service.PlayerInfoService;
 
 public class GetPlayerResultForNPB {
 	public static List<ResultBeans> getStats(int year,String league) throws IOException {
 		//全htmlデータ取得
-		Document document = Jsoup.connect("https://npb.jp/bis/"+year+"/stats/bat_"+league+".html").get();
-		Elements statsArray = document.select("tr");
-		List<ResultBeans> results = setStats(statsArray, year, league);
-		//スクレイピングデータをループして出力
+		List<ResultBeans> results = setStats(Scraping.NPB(year, league), year, league);
 		return results;
 	}
 	

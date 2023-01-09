@@ -11,19 +11,13 @@ import org.jsoup.select.Elements;
 import beans.PlayerBeans;
 
 public class GetPlayerInfoForSportsnavi {
-	public static List<PlayerBeans> getPlayers(String[] args) throws IOException {
+	public static List<PlayerBeans> getPlayers(String league) throws IOException {
 		//全htmlデータ取得
-		Document document = Jsoup.connect("https://baseball.yahoo.co.jp/npb/stats/batter?gameKindId=2").get();
-		//クラス・タグで絞って配列化
-		Elements statsArray = document.getElementsByClass("bb-playerTable__row").select("tr");
-		List<PlayerBeans> players = setPlayers(statsArray);
-		//スクレイピングデータをループして出力
+		List<PlayerBeans> players = setPlayers(Scraping.SportsNavi(league), league);
 		return players;
 	}
 	
-
-	
-	public final static List<PlayerBeans> setPlayers(Elements statsArray) throws IOException {
+	public final static List<PlayerBeans> setPlayers(Elements statsArray,String league) throws IOException {
 		List<PlayerBeans> players = new ArrayList<PlayerBeans>();
 		for (int i = 1; i < statsArray.size(); i++) {
 			PlayerBeans player = new PlayerBeans();
@@ -32,7 +26,7 @@ public class GetPlayerInfoForSportsnavi {
 				player.setId(i);
 				player.setName(data[1]);
 				player.setTeam(data[2].replaceAll("\\(", "").replaceAll("\\)", ""));
-				player.setLeague("パ");
+				player.setLeague(StatsCalculation.getLeagueStringKatakana(league));
 				players.add(player);
 			}
 		}

@@ -3,21 +3,14 @@ package contoroller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
 import beans.PlayerBeans;
 import service.PlayerInfoService;
 
 public class GetPlayerInfoForNPB {
 	public static List<PlayerBeans> getPlayers(int year,String league) throws IOException {
 		//全htmlデータ取得
-		Document document = Jsoup.connect("https://npb.jp/bis/"+year+"/stats/bat_"+league+".html").get();//クラス・タグで絞って配列化
-		Elements statsArray = document.select("tr");
-		List<PlayerBeans> players = setPlayers(statsArray, league);
-		//スクレイピングデータをループして出力
+		List<PlayerBeans> players = setPlayers(Scraping.NPB(year, league), league);
 		return players;
 	}
 	
@@ -33,7 +26,7 @@ public class GetPlayerInfoForNPB {
 					player.setId(i);
 					player.setName(data[1]);
 					player.setTeam(data[2].replaceAll("\\(", "").replaceAll("\\)", ""));
-					player.setLeague(StatsCalculation.getLeagueString(league));
+					player.setLeague(StatsCalculation.getLeagueStringKatakana(league));
 					players.add(player);
 				}
 			}

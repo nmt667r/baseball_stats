@@ -12,13 +12,8 @@ import beans.ResultBeans;
 import service.PlayerInfoService;
 
 public class GetPlayerResultForSportsnavi {
-	public static List<ResultBeans> getStats(String[] args) throws IOException {
-		//全htmlデータ取得
-		Document document = Jsoup.connect("https://baseball.yahoo.co.jp/npb/stats/batter?gameKindId=2").get();
-		//クラス・タグで絞って配列化
-		Elements statsArray = document.getElementsByClass("bb-playerTable__row").select("tr");
-		List<ResultBeans> results = setStats(statsArray);
-		//スクレイピングデータをループして出力
+	public static List<ResultBeans> getStats(String league) throws IOException {
+		List<ResultBeans> results = setStats(Scraping.SportsNavi(league));
 		return results;
 	}
 
