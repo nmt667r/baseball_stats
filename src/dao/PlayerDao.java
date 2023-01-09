@@ -42,8 +42,6 @@ public class PlayerDao {
 				PlayerBeans player = new PlayerBeans();
 				player.setId(rs.getInt("id"));
 				player.setName(rs.getString("name"));
-				//player.setCreatedDate(rs.getTimestamp("created_date"));
-				//player.setUpdatedDate(rs.getTimestamp("updated_date"));
 				players.add(player);
 			}
 			return players;

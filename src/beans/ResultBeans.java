@@ -2,7 +2,7 @@ package beans;
 
 public class ResultBeans {
 	private int id; //ID
-	private int playerId; //ID
+	private int playerId; //選手ID
 	private int year; //記録年
 	private Double battingAverage; //打率
 	private int games; //試合数

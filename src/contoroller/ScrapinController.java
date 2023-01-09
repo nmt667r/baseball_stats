@@ -13,7 +13,7 @@ public class ScrapinController {
 		Elements scrapingArray = document.select("tr");
 		return scrapingArray;
 	}
-	
+
 	public static Elements SportsNavi(String league) throws IOException {
 		//リーグ文字列をスポナビURL用に変換
 		String SportsNaviLeague = StatsCalculation.getLeagueInt(league);

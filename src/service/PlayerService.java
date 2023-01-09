@@ -34,14 +34,14 @@ public class PlayerService {
 	public List<PlayerBeans> select(String playerName) {
 		final int LIMIT_NUM = 1000;
 		Connection connection = null;
-		
+
 		String searchName;
 		if (StringUtils.isBlank(playerName)) {
 			searchName = "%%";
 		} else {
 			searchName = "%" + playerName + "%";
 		}
-		
+
 		try {
 			connection = getConnection();
 			List<PlayerBeans> players = new PlayerDao().select(connection, LIMIT_NUM, searchName);
