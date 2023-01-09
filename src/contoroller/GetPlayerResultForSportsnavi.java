@@ -13,6 +13,7 @@ import service.PlayerInfoService;
 
 public class GetPlayerResultForSportsnavi {
 	public static List<ResultBeans> getStats(String league) throws IOException {
+		//全htmlデータ取得
 		List<ResultBeans> results = setStats(Scraping.SportsNavi(league));
 		return results;
 	}

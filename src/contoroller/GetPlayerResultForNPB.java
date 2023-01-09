@@ -3,30 +3,23 @@ package contoroller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 import beans.ResultBeans;
 import service.PlayerInfoService;
 
 public class GetPlayerResultForNPB {
-	public static List<ResultBeans> getStats(int year,String league) throws IOException {
+	public final static List<ResultBeans> getResultArray(int year, String league) throws IOException {
 		//全htmlデータ取得
-		List<ResultBeans> results = setStats(Scraping.NPB(year, league), year, league);
-		return results;
-	}
-	
-		
-	public final static List<ResultBeans> setStats(Elements statsArray, int year, String league) throws IOException {
-		//プレイヤー配列を用意
+		List<Element> scrapingArray = Scraping.NPB(year, league);
+		//成績配列を用意
 		List<ResultBeans> results = new ArrayList<ResultBeans>();
-		for (int i = 2; i < statsArray.size()-1; i++) {
+		for (int i = 2; i < scrapingArray.size()-1; i++) {
 			ResultBeans result = new ResultBeans();
-			if (i != statsArray.size()) {
-				String[] data = statsArray.get(i).text().split(" ");
+			if (i != scrapingArray.size()) {
+				String[] data = scrapingArray.get(i).text().split(" ");
 				Double SluggingPercentage = Double.parseDouble(data[23]);
 				Double OnBasePercentage = Double.parseDouble(data[24]);
 				result.setPlayerId(new PlayerInfoService().select(data[1]).get(0).getId());
-				//result.setName(data[1]);
-				//result.setLeague(StatsCalculation.getLeagueString(league));
 				result.setYear(year);
 				result.setBattingAverage(Double.parseDouble(data[3]));
 				result.setGames(Integer.parseInt(data[4]));

@@ -11,22 +11,19 @@ import service.PlayerResultService;
 public class HomeContoroller {
 
 	public static void main(String[] args) throws IOException {
-//				test.getDBstats(args);
-		
+//				test.getDBstats(args);		
 		for (int year = 2005; year < 2023; year++) {
 			//Cはcentral leagueの意
-			List<PlayerBeans> centralPlayers = GetPlayerInfoForNPB.getPlayers(year, "c");
+			List<PlayerBeans> centralPlayers = GetPlayerInfoForNPB.getPlayersArray(year, "c");
 			new PlayerInfoService().insert(centralPlayers);
-			List<ResultBeans> centralresults = GetPlayerResultForNPB.getStats(year, "c");
+			List<ResultBeans> centralresults = GetPlayerResultForNPB.getResultArray(year, "c");
 			new PlayerResultService().insert(centralresults);
 			
 			//pはpacific leagueの意
-			List<PlayerBeans> pacificPlayers = GetPlayerInfoForNPB.getPlayers(year, "p");
+			List<PlayerBeans> pacificPlayers = GetPlayerInfoForNPB.getPlayersArray(year, "p");
 			new PlayerInfoService().insert(pacificPlayers);
-			List<ResultBeans> pacificResults = GetPlayerResultForNPB.getStats(year, "p");
+			List<ResultBeans> pacificResults = GetPlayerResultForNPB.getResultArray(year, "p");
 			new PlayerResultService().insert(pacificResults);
         }
-		//List<PlayerBeans> players = GetPlayerInfoAPI.getPlayers(args);
-		//new PlayerInfoService().insert(players);
 	}
 }
