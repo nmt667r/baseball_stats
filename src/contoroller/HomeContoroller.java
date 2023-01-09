@@ -5,8 +5,8 @@ import java.util.List;
 
 import beans.PlayerBeans;
 import beans.ResultBeans;
-import service.PlayerInfoService;
-import service.PlayerResultService;
+import service.PlayerService;
+import service.ResultService;
 
 public class HomeContoroller {
 
@@ -14,16 +14,16 @@ public class HomeContoroller {
 //				test.getDBstats(args);		
 		for (int year = 2005; year < 2023; year++) {
 			//Cはcentral leagueの意
-			List<PlayerBeans> centralPlayers = GetPlayerInfoForNPB.getPlayersArray(year, "c");
-			new PlayerInfoService().insert(centralPlayers);
-			List<ResultBeans> centralresults = GetPlayerResultForNPB.getResultArray(year, "c");
-			new PlayerResultService().insert(centralresults);
+			List<PlayerBeans> centralPlayers = PlayerController.getPlayerNPB(year, "c");
+			new PlayerService().insert(centralPlayers);
+			List<ResultBeans> centralresults = ResultController.getResultNPB(year, "c");
+			new ResultService().insert(centralresults);
 			
 			//pはpacific leagueの意
-			List<PlayerBeans> pacificPlayers = GetPlayerInfoForNPB.getPlayersArray(year, "p");
-			new PlayerInfoService().insert(pacificPlayers);
-			List<ResultBeans> pacificResults = GetPlayerResultForNPB.getResultArray(year, "p");
-			new PlayerResultService().insert(pacificResults);
+			List<PlayerBeans> pacificPlayers = PlayerController.getPlayerNPB(year, "p");
+			new PlayerService().insert(pacificPlayers);
+			List<ResultBeans> pacificResults = ResultController.getResultNPB(year, "p");
+			new ResultService().insert(pacificResults);
         }
 	}
 }

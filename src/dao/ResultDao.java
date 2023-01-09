@@ -12,7 +12,7 @@ import java.util.List;
 import beans.ResultBeans;
 import exception.SQLRuntimeException;
 
-public class PlayerResultDao {
+public class ResultDao {
 	public List<ResultBeans> select(Connection connection, int LIMIT_NUM) {
 		PreparedStatement ps = null;
 		try {

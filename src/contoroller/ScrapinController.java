@@ -5,7 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class Scraping {
+public class ScrapinController {
 	public static Elements NPB(int year,String league) throws IOException {
 		//全htmlデータ取得
 		Document document = Jsoup.connect("https://npb.jp/bis/"+year+"/stats/bat_"+league+".html").get();//クラス・タグで絞って配列化

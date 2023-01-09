@@ -6,17 +6,20 @@ import static utils.DBUtil.*;
 import java.sql.Connection;
 import java.util.List;
 
-import beans.ResultBeans;
-import dao.PlayerResultDao;
+import org.apache.commons.lang.StringUtils;
 
-public class PlayerResultService {
-	public List<ResultBeans> select() {
-		final int LIMIT_NUM = 10;
+import beans.PlayerBeans;
+import dao.PlayerDao;
+
+public class PlayerService {
+	public List<PlayerBeans> insert(List<PlayerBeans> players) {
 		Connection connection = null;
 		try {
 			connection = getConnection();
-			List<ResultBeans> players = new PlayerResultDao().select(connection, LIMIT_NUM);
+
+			new PlayerDao().insert(connection, players);
 			commit(connection);
+
 			return players;
 		} catch (RuntimeException e) {
 			rollback(connection);
@@ -28,15 +31,21 @@ public class PlayerResultService {
 			close(connection);
 		}
 	}
-
-	public List<ResultBeans> insert(List<ResultBeans> players) {
+	public List<PlayerBeans> select(String playerName) {
+		final int LIMIT_NUM = 1000;
 		Connection connection = null;
+		
+		String searchName;
+		if (StringUtils.isBlank(playerName)) {
+			searchName = "%%";
+		} else {
+			searchName = "%" + playerName + "%";
+		}
+		
 		try {
 			connection = getConnection();
-
-			new PlayerResultDao().insert(connection, players);
+			List<PlayerBeans> players = new PlayerDao().select(connection, LIMIT_NUM, searchName);
 			commit(connection);
-
 			return players;
 		} catch (RuntimeException e) {
 			rollback(connection);
