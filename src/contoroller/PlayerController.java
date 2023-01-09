@@ -22,7 +22,6 @@ public class PlayerController {
 			//選手情報がDBに存在しない場合、ネストする(選手情報はユニーク)
 			if(new PlayerService().select(data[1]).size() == 0) {
 				//以下DBに必要な情報をマッピング
-				player.setId(i);
 				player.setName(data[1]);
 				//球団文字列の()を除去
 				player.setTeam(data[2].replaceAll("\\(", "").replaceAll("\\)", ""));
@@ -48,7 +47,6 @@ public class PlayerController {
 				//スクレイピングデータの文字列情報だけ抽出・配列化
 				String[] data = scrapingData.get(i).text().split(" ");
 				//以下DBに必要な情報をマッピング
-				player.setId(i);
 				player.setName(data[1]);
 				//球団文字列の()を除去
 				player.setTeam(data[2].replaceAll("\\(", "").replaceAll("\\)", ""));
