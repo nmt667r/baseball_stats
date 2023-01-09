@@ -7,10 +7,10 @@ import org.jsoup.nodes.Element;
 import beans.ResultBeans;
 import service.PlayerService;
 
-public class ResultController {
+public class ResultServlet {
 	public final static List<ResultBeans> getResultNPB(int year, String league) throws IOException {
 		//全htmlデータ取得
-		List<Element> scrapingArray = ScrapinController.NPB(year, league);
+		List<Element> scrapingArray = ScrapinServlet.NPB(year, league);
 		//成績配列を用意
 		List<ResultBeans> results = new ArrayList<ResultBeans>();
 		//配列をループ(0番目・1番目・最後の配列は不要)
@@ -56,7 +56,7 @@ public class ResultController {
 
 	public final static List<ResultBeans> getResultSportsNavi(String league) throws IOException {
 		//全htmlデータ取得
-		List<Element> scrapingArray = ScrapinController.SportsNavi(league);
+		List<Element> scrapingArray = ScrapinServlet.SportsNavi(league);
 		//成績配列を用意
 		List<ResultBeans> results = new ArrayList<ResultBeans>();
 		for (int i = 1; i < scrapingArray.size()-1; i++) {
