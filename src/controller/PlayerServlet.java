@@ -10,7 +10,7 @@ import service.PlayerService;
 public class PlayerServlet {	
 	public final static List<PlayerBeans> getPlayerNPB(int year,String league) throws IOException {
 		//全htmlデータ取得
-		List<Element> scrapingArray = ScrapinServlet.NPB(year, league);
+		List<Element> scrapingArray = ScrapingServlet.NPB(year, league);
 		//プレイヤー配列を用意
 		List<PlayerBeans> players = new ArrayList<PlayerBeans>();
 		//配列をループ(0番目・1番目・最後の配列は不要)
@@ -36,7 +36,7 @@ public class PlayerServlet {
 
 	public final static List<PlayerBeans> getPlayerSportsNavi(String league) throws IOException {
 		//全htmlデータ取得
-		List<Element> scrapingData = ScrapinServlet.SportsNavi(league);
+		List<Element> scrapingData = ScrapingServlet.SportsNavi(league);
 		//プレイヤー配列を用意
 		List<PlayerBeans> players = new ArrayList<PlayerBeans>();
 		//配列をループ(0番目の配列は不要)
