@@ -7,6 +7,8 @@ import beans.PlayerBeans;
 import beans.ResultBeans;
 import service.PlayerService;
 import service.ResultService;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,25 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 public class HomeServlet extends HttpServlet {
 	
 	@Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		//2005~2022のデータをDB登録する(NPB公式サイトの仕様)
-		for (int year = 2005; year < 2023; year++) {
-			//cはcentral leagueの意
-			//pはpacific leagueの意
-			//選手情報を取得
-			List<PlayerBeans> centralPlayers = PlayerServlet.getPlayerNPB(year, "c");
-			List<PlayerBeans> pacificPlayers = PlayerServlet.getPlayerNPB(year, "p");
-			//選手情報をDBへinsert
-			new PlayerService().insert(centralPlayers);
-			new PlayerService().insert(pacificPlayers);
-
-			//選手成績を取得
-			List<ResultBeans> centralresults = ResultServlet.getResultNPB(year, "c");
-			List<ResultBeans> pacificResults = ResultServlet.getResultNPB(year, "p");
-			//選手成績をDBへinsert
-			new ResultService().insert(centralresults);
-			new ResultService().insert(pacificResults);
-		}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<PlayerBeans> Players = new PlayerService().select("");
+		List<ResultBeans> Results = new ResultService().select();
+		int[] intArray = { 1, 2, 3, 4, 5 };
+	    request.setAttribute("intArray", intArray);
+		request.setAttribute("players", Players);
+		request.setAttribute("results", Results);
+		request.setCharacterEncoding("UTF-8");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
 	}
 }
