@@ -28,22 +28,21 @@ public class ResultDao {
 		}
 	}
 
-	private List<ResultBeans> toPlayers(ResultSet rs) throws SQLException {
+    private List<ResultBeans> toPlayers(ResultSet rs) throws SQLException {
 
-		List<ResultBeans> results = new ArrayList<ResultBeans>();
-		try {
-			while (rs.next()) {
-				ResultBeans result = new ResultBeans();
-				result.setId(rs.getInt("id"));
-				//result.setCreatedDate(rs.getTimestamp("created_date"));
-				//result.setUpdatedDate(rs.getTimestamp("updated_date"));
-				results.add(result);
-			}
-			return results;
-		} finally {
-			close(rs);
-		}
-	}
+        List<ResultBeans> results = new ArrayList<ResultBeans>();
+        try {
+            while (rs.next()) {
+            	ResultBeans result = new ResultBeans();
+                result.setId(rs.getInt("id"));
+                results.add(result);
+            }
+            return results;
+        } finally {
+            close(rs);
+        }
+    }	
+
 
 	public void insert(Connection connection, List<ResultBeans> results) {
 

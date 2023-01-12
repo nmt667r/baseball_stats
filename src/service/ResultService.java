@@ -11,7 +11,7 @@ import dao.ResultDao;
 
 public class ResultService {
 	public List<ResultBeans> select() {
-		final int LIMIT_NUM = 10;
+		final int LIMIT_NUM = 1000;
 		Connection connection = null;
 		try {
 			connection = getConnection();
