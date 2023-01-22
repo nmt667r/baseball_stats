@@ -1,4 +1,4 @@
-package contoroller;
+package service;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import beans.PlayerBeans;
+import beans.PlayerResultBeans;
 import beans.ResultBeans;
-import service.PlayerService;
 
-public class test {
+public class Test {
 	
 	//スクレイピングテスト
 	public static void getStatsAll(String[] args) throws IOException {
@@ -35,10 +35,44 @@ public class test {
 	}
 	
 	//配列確認メソッド
-	public final static void printStats(List<ResultBeans> results) throws IOException {
+	public final static void printResults(List<ResultBeans> results) throws IOException {
 		for (ResultBeans p : results) {
 			System.out.println(p.getId());
 			System.out.println(p.getPlayerId());
+			System.out.println(p.getBattingAverage());
+			System.out.println(p.getGames());
+			System.out.println(p.getAtBats());
+			System.out.println(p.getPlateAppearance());
+			System.out.println(p.getHits());
+			System.out.println(p.getDoubles());
+			System.out.println(p.getTriples());
+			System.out.println(p.getHomeruns());
+			System.out.println(p.getTotalBases());
+			System.out.println(p.getRbi());
+			System.out.println(p.getRuns());
+			System.out.println(p.getStrikeOuts());
+			System.out.println(p.getBaseOnBalls());
+			System.out.println(p.getHitByPitches());
+			System.out.println(p.getSacrificeBunts());
+			System.out.println(p.getSacrificeFlies());
+			System.out.println(p.getStolenBases());
+			System.out.println(p.getStolenBaseDeath());
+			System.out.println(p.getDoublePlay());
+			System.out.println(p.getOnBasePercentage());
+			System.out.println(p.getSluggingPercentage());
+			System.out.println(p.getOps());
+			System.out.println(p.getScoringRangePercentage());
+			System.out.println(p.getErrors());
+		}
+	}
+	
+	public final static void printPlayersResults(List<PlayerResultBeans> playersResults) throws IOException {
+		for (PlayerResultBeans p : playersResults) {
+			System.out.println(p.getId());
+			System.out.println(p.getPlayerId());
+			System.out.println(p.getName());
+			System.out.println(p.getLeague());
+			System.out.println(p.getTeam());
 			System.out.println(p.getBattingAverage());
 			System.out.println(p.getGames());
 			System.out.println(p.getAtBats());
